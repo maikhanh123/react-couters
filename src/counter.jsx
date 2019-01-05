@@ -3,14 +3,19 @@ import React, { Component } from "react";
 class Counter extends Component {
   state = {
     count: 0,
-    tags: []
+    tags: ["tag1", "tag2"]
   };
+
+//   constructor(){
+//       super();
+//       this.handleIncrement = this.handleIncrement.bind(this);
+//   }
 
   render() {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button className="btn btn-info">Increment</button>
+        <button onClick={this.handleIncrement} className="btn btn-info">Increment</button>
 
         <div>
             {this.state.tags.length === 0 && <p>Please create a new tag</p>}
@@ -18,6 +23,10 @@ class Counter extends Component {
         </div>
       </div>
     );
+  }
+
+  handleIncrement = () => {
+      console.log("increment was click", this);
   }
 
   renderTag() {
