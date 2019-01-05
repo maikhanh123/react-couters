@@ -6,28 +6,34 @@ class Counter extends Component {
     tags: ["tag1", "tag2"]
   };
 
-//   constructor(){
-//       super();
-//       this.handleIncrement = this.handleIncrement.bind(this);
-//   }
+  //   constructor(){
+  //       super();
+  //       this.handleIncrement = this.handleIncrement.bind(this);
+  //   }
 
   render() {
     return (
       <div>
         <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
-        <button onClick={this.handleIncrement} className="btn btn-info">Increment</button>
+        <button
+          onClick={() => this.handleIncrement({ id: 1 })}
+          className="btn btn-info"
+        >
+          Increment
+        </button>
 
         <div>
-            {this.state.tags.length === 0 && <p>Please create a new tag</p>}
-            {this.renderTag()}
+          {this.state.tags.length === 0 && <p>Please create a new tag</p>}
+          {this.renderTag()}
         </div>
       </div>
     );
   }
 
-  handleIncrement = () => {
-      console.log("increment was click", this);
-  }
+  handleIncrement = productId => {
+    console.log(productId);
+    this.setState({ count: this.state.count + 1 });
+  };
 
   renderTag() {
     if (this.state.tags.length === 0) {
